@@ -1,0 +1,91 @@
+@import '@fontsource-variable/space-grotesk';
+@import '@fontsource-variable/inter';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Design tokens: space-separated RGB channels so Tailwind opacity modifiers work. */
+:root {
+  --bg: 244 248 243;
+  --surface: 255 255 255;
+  --ink: 8 24 16;
+  --muted: 72 94 82;
+  --line: 8 24 16;
+  --pitch: 10 74 44;
+  --accent: 182 255 59; /* fill only: always paired with --accent-ink text */
+  --accent-ink: 6 24 12;
+  --accent-text: 16 106 52; /* accent when used as text on the page background */
+  --amber: 255 176 32;
+  --amber-text: 146 78 0;
+}
+
+.dark {
+  --bg: 6 18 12;
+  --surface: 14 34 24;
+  --ink: 236 246 238;
+  --muted: 160 184 168;
+  --line: 255 255 255;
+  --pitch: 10 74 44;
+  --accent: 182 255 59;
+  --accent-ink: 6 24 12;
+  --accent-text: 182 255 59;
+  --amber: 255 176 32;
+  --amber-text: 255 190 74;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem; /* clears the sticky navbar for anchor jumps */
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+  body {
+    @apply bg-bg font-sans text-ink antialiased;
+    overflow-x: hidden;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display tracking-tight;
+  }
+  :focus-visible {
+    @apply outline-none ring-2 ring-accent-text ring-offset-2 ring-offset-bg;
+  }
+}
+
+@layer components {
+  .glass {
+    @apply border border-line/15 bg-surface/70 shadow-card backdrop-blur-md;
+  }
+  /* Faint pitch-line grid used behind hero and banner sections. */
+  .pitch-pattern {
+    background-image:
+      linear-gradient(rgb(var(--ink) / 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--ink) / 0.05) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse at center, #000 30%, transparent 75%);
+  }
+  .text-gradient {
+    @apply bg-gradient-to-r from-accent-text to-amber-text bg-clip-text text-transparent;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

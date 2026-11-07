@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PitchIQ — Learn soccer rules, tactics &amp; history in bite-sized lessons</title>
+    <meta
+      name="description"
+      content="PitchIQ turns matchday curiosity into real soccer knowledge. Bite-sized lessons, daily quizzes and stats explainers on rules, tactics, history, players and competitions."
+    />
+    <meta name="theme-color" content="#06120c" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="PitchIQ" />
+    <meta property="og:title" content="PitchIQ — Know the game inside out" />
+    <meta
+      property="og:description"
+      content="Bite-sized soccer lessons, daily quizzes and tactics explainers for fans who want to understand the game."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="PitchIQ — Know the game inside out" />
+    <meta
+      name="twitter:description"
+      content="Bite-sized soccer lessons, daily quizzes and tactics explainers for fans who want to understand the game."
+    />
+
+    <script>
+      // Apply the saved (or system) theme before first paint to avoid a flash.
+      (function () {
+        try {
+          var saved = localStorage.getItem('pitchiq-theme');
+          var dark = saved
+            ? saved === 'dark'
+            : !window.matchMedia('(prefers-color-scheme: light)').matches;
+          document.documentElement.classList.toggle('dark', dark);
+          document
+            .querySelector('meta[name="theme-color"]')
+            .setAttribute('content', dark ? '#06120c' : '#f4f8f3');
+        } catch (e) {
+          /* storage unavailable: keep the dark default */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
