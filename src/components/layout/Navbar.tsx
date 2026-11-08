@@ -14,7 +14,7 @@ const NAV_IDS = site.nav.map((item) => item.id);
 
 interface NavbarProps {
   theme: 'light' | 'dark';
-  onToggleTheme: () => void;
+  onToggleTheme: (origin: { x: number; y: number }) => void;
 }
 
 export function Navbar({ theme, onToggleTheme }: NavbarProps) {
